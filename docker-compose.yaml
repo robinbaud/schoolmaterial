@@ -15,4 +15,4 @@ services:
     working_dir: "/schoolmaterial"
     ports:
       - "8081:3000"
-    command: "yarn start"
+    command: "npm i yarn && yarn install && yarn start"

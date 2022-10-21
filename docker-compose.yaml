@@ -1,4 +1,4 @@
-version: "4.9.0"
+version: "3.8"
 services:
   backend:
     image: "node:14.17.3"
@@ -9,10 +9,8 @@ services:
       - "8080:3001"
     command: "node server.js"
   frontend:
-    image: "node:14.17.3"
-    volumes:
-      - "./:/schoolmaterial"
-    working_dir: "/schoolmaterial"
+    build: .
+    working_dir: "/app"
     ports:
       - "8081:3000"
-    command: "npm i yarn && yarn install && yarn start"
+    command: "yarn start"

@@ -6,6 +6,6 @@ RUN rm -rf node_modules
 
 RUN npm i yarn
 RUN yarn install
-RUN npm audit fix
+
 
 EXPOSE 3000

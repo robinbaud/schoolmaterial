@@ -3,13 +3,13 @@ services:
   backend:
     image: "node:14.17.3"
     volumes:
-      - "./:/home/node/app"
-    working_dir: "/home/node/app"
+      context: ./back
+    working_dir: "/usr/src/app"
     ports:
       - "8080:3001"
     command: "nodemon app.js"
   frontend:
-    build: .
+    build: ./front
     working_dir: "/app"
     ports:
       - "8081:3000"

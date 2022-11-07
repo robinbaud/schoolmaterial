@@ -7,7 +7,7 @@ services:
     working_dir: "/home/node/app"
     ports:
       - "8080:3001"
-    command: "node server.js"
+    command: "nodemon app.js"
   frontend:
     build: .
     working_dir: "/app"

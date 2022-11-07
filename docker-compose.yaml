@@ -7,7 +7,7 @@ services:
     working_dir: "/usr/src/app"
     ports:
       - "8080:3001"
-    command: "nodemon app.js"
+
   frontend:
     build: ./front
     working_dir: "/app"

@@ -9,4 +9,4 @@ app.get("/", (req, res) => {
 app.use((req, res) => {
   res.status(404).sendFile("./404.html", { root: __dirname });
 });
-app.listen(8080, "0.0.0.0");
+app.listen(8080);

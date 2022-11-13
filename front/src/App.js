@@ -13,6 +13,14 @@ function App() {
     formState: { errors },
   } = useForm();
 
+  const setItem = (item) => {
+    axios.put(
+      "http://localhost:3001/set-material/" + item.id /*, {
+      id: item.id,
+      given: !item.given,
+    }*/
+    );
+  };
   const postMaterial = (data) => {
     console.log(data);
     axios
@@ -26,35 +34,37 @@ function App() {
 
   const onSubmit = (data) => postMaterial(JSON.stringify(data));
 
-  const getHello = () => {
+  React.useEffect(() => {
     axios
-      .get("http://localhost:3001/all-materiel")
+      .get("http://localhost:3001/all-material")
+      .then((r) => setData(r.data))
       .catch((e) => console.log(e));
-  };
+  }, []);
+
   return (
     <div className="App">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        action="http://localhost:3001/add-material"
-      >
-        <input {...register("Name")} />
-        <select {...register("type")}>
-          <option value="ordinateur">ordinateur</option>
-          <option value="cable">cable</option>
-          <option value="souris">souris</option>
-        </select>
-        <input type="submit" />
-      </form>
-      <button onClick={() => getHello()}>cliiiique</button>
-      {data &&
-        data.map((item) => {
-          return (
-            <div>
-              <h1>{item.name}</h1>
-              <p>{item.description}</p>
-            </div>
-          );
-        })}
+      <h1>Le matériel de l'école</h1>
+      <div className="container">
+        <div className="table">
+          {data &&
+            data.map((item) => {
+              return (
+                <div className="cell">
+                  <div className="name">
+                    <h3>{item.name}</h3>
+                  </div>
+
+                  <p>{item.type}</p>
+                  {item.given === false && (
+                    <a href="" onClick={() => setItem(item)}>
+                      disponible
+                    </a>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 }
